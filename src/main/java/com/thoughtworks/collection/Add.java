@@ -42,7 +42,11 @@ public class Add {
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List<Integer> tripleAndAddTwoList = arrayList.stream()
+                .map(x -> 3*x + 2).collect(Collectors.toList());
+        int sum = tripleAndAddTwoList.stream()
+                .reduce(0, (x, y) -> x + y);
+        return sum;
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
