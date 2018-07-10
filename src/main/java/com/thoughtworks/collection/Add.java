@@ -50,7 +50,13 @@ public class Add {
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List result = arrayList;
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i) % 2 != 0) {
+                result.set(i, arrayList.get(i) * 3 + 2);
+            }
+        }
+        return result;
     }
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
