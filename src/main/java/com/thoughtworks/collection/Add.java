@@ -98,7 +98,15 @@ public class Add {
     }
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
-        throw new NotImplementedException();
+        List<Integer> result = arrayList.stream()
+                .filter(x -> x % 2 == 0)
+                .map(x -> x).collect(Collectors.toList());
+        for (Integer aResult : result) {
+            if (aResult.equals(specialElment)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
