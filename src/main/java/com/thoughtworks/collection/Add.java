@@ -1,6 +1,8 @@
 package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.ArrayList;
 import java.util.stream.*;
 import java.util.List;
 
@@ -69,7 +71,19 @@ public class Add {
     }
 
     public double getMedianOfEven(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List<Integer> resultList =  arrayList.stream()
+                .filter(x -> x % 2 == 0)
+                .map(x -> x).collect(Collectors.toList());
+        int median;
+        int size = resultList.size();
+        if (size % 2 == 0) {
+            median = (resultList.get(size / 2) + resultList.get(size / 2 - 1)) / 2;
+        } else {
+            median = resultList.get(size / 2);
+        }
+
+        return median;
+
     }
 
     public double getAverageOfEven(List<Integer> arrayList) {
