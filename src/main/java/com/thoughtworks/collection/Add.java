@@ -110,7 +110,17 @@ public class Add {
     }
 
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List evenList = arrayList.stream()
+                .filter(x -> x % 2 == 0)
+                .map(x -> x).collect(Collectors.toList());
+        List result = new ArrayList<>();
+        result.add(evenList.get(0));
+        for (Object anEvenList : evenList) {
+            if (!result.contains(anEvenList)) {
+                result.add(anEvenList);
+            }
+        }
+        return result;
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
