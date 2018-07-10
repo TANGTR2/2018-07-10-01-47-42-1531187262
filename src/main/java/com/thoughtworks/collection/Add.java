@@ -2,8 +2,10 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.stream.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class Add {
@@ -128,6 +130,11 @@ public class Add {
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < arrayList.size() - 1; i++) {
+            Integer resultElement = (arrayList.get(i) + arrayList.get(i + 1)) * 3;
+            result.add(resultElement);
+        }
+        return result;
     }
 }
