@@ -24,7 +24,21 @@ public class Add {
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
-        throw new NotImplementedException();
+        if (leftBorder < rightBorder) {
+            List<Integer> list = IntStream.range(leftBorder, rightBorder).boxed().collect(Collectors.toList());
+            list.add(rightBorder);
+            int sum = list.stream()
+                    .filter(x -> x % 2 == 1)
+                    .reduce(0, (x, y) -> x + y);
+            return sum;
+        } else {
+            List<Integer> list = IntStream.range(rightBorder, leftBorder).boxed().collect(Collectors.toList());
+            list.add(leftBorder);
+            int sum = list.stream()
+                    .filter(x -> x % 2 == 1)
+                    .reduce(0, (x, y) -> x + y);
+            return sum;
+        }
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
