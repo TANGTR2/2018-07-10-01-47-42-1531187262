@@ -13,7 +13,9 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        throw new NotImplementedException();
+        int max = arrayList.stream()
+                .max(Integer::compare).get();
+        return max;
     }
 
     public double getMinimum() {
