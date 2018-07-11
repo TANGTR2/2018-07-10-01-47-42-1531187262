@@ -3,22 +3,22 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.stream.*;
-import java.util.Arrays;
-import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class Add {
     public int getSumOfEvens(int leftBorder, int rightBorder) {
         if (leftBorder < rightBorder) {
-            List<Integer> list = IntStream.range(leftBorder, rightBorder).boxed().collect(Collectors.toList());
+            List<Integer> list = IntStream.range(leftBorder, rightBorder).boxed().collect(toList());
             list.add(rightBorder);
             int sum = list.stream()
                     .filter(x -> x % 2 == 0)
                     .reduce(0, (x, y) -> x + y);
             return sum;
         } else {
-            List<Integer> list = IntStream.range(rightBorder, leftBorder).boxed().collect(Collectors.toList());
+            List<Integer> list = IntStream.range(rightBorder, leftBorder).boxed().collect(toList());
             list.add(leftBorder);
             int sum = list.stream()
                     .filter(x -> x % 2 == 0)
@@ -29,14 +29,14 @@ public class Add {
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
         if (leftBorder < rightBorder) {
-            List<Integer> list = IntStream.range(leftBorder, rightBorder).boxed().collect(Collectors.toList());
+            List<Integer> list = IntStream.range(leftBorder, rightBorder).boxed().collect(toList());
             list.add(rightBorder);
             int sum = list.stream()
                     .filter(x -> x % 2 == 1)
                     .reduce(0, (x, y) -> x + y);
             return sum;
         } else {
-            List<Integer> list = IntStream.range(rightBorder, leftBorder).boxed().collect(Collectors.toList());
+            List<Integer> list = IntStream.range(rightBorder, leftBorder).boxed().collect(toList());
             list.add(leftBorder);
             int sum = list.stream()
                     .filter(x -> x % 2 == 1)
@@ -47,7 +47,7 @@ public class Add {
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
         List<Integer> tripleAndAddTwoList = arrayList.stream()
-                .map(x -> 3*x + 2).collect(Collectors.toList());
+                .map(x -> 3*x + 2).collect(toList());
         int sum = tripleAndAddTwoList.stream()
                 .reduce(0, (x, y) -> x + y);
         return sum;
@@ -66,7 +66,7 @@ public class Add {
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
         List<Integer> processedOddsList = arrayList.stream()
                 .filter(x -> x % 2 == 1)
-                .map(x -> 3*x + 5).collect(Collectors.toList());
+                .map(x -> 3*x + 5).collect(toList());
         int sum = processedOddsList.stream()
                 .reduce(0, (x, y) -> x + y);
         return sum;
@@ -75,7 +75,7 @@ public class Add {
     public double getMedianOfEven(List<Integer> arrayList) {
         List<Integer> resultList =  arrayList.stream()
                 .filter(x -> x % 2 == 0)
-                .map(x -> x).collect(Collectors.toList());
+                .map(x -> x).collect(toList());
         int median;
         int size = resultList.size();
         if (size % 2 == 0) {
@@ -91,7 +91,7 @@ public class Add {
     public double getAverageOfEven(List<Integer> arrayList) {
         List<Integer> result = arrayList.stream()
                 .filter(x -> x % 2 == 0)
-                .map(x -> x).collect(Collectors.toList());
+                .map(x -> x).collect(toList());
         double sum = 0;
         for (Integer aResult : result) {
             sum += aResult;
@@ -102,7 +102,7 @@ public class Add {
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
         List<Integer> result = arrayList.stream()
                 .filter(x -> x % 2 == 0)
-                .map(x -> x).collect(Collectors.toList());
+                .map(x -> x).collect(toList());
         for (Integer aResult : result) {
             if (aResult.equals(specialElment)) {
                 return true;
@@ -114,7 +114,7 @@ public class Add {
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
         List evenList = arrayList.stream()
                 .filter(x -> x % 2 == 0)
-                .map(x -> x).collect(Collectors.toList());
+                .map(x -> x).collect(toList());
         List result = new ArrayList<>();
         result.add(evenList.get(0));
         for (Object anEvenList : evenList) {
@@ -126,7 +126,18 @@ public class Add {
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List<Integer> evensList = arrayList.stream()
+                .filter(x -> x % 2 == 0)
+                .sorted()
+                .map(x -> x).collect(toList());
+        List<Integer> oddsList = arrayList.stream()
+                .filter(x -> x % 2 == 1)
+                .sorted(Comparator.reverseOrder())
+                .map(x -> x).collect(toList());
+        List<Integer> result = evensList;
+        for (Object anoddList : oddsList)
+            result.add(anoddList.hashCode());
+        return result;
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
