@@ -41,6 +41,9 @@ public class MyMap {
     }
 
     public List<Integer> sortFromSmall() {
-        throw new NotImplementedException();
+        List<Integer> sortFromBigList = array.stream()
+                .sorted()
+                .map(x -> x).collect(toList());
+        return sortFromBigList;
     }
 }
