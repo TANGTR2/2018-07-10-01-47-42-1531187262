@@ -3,7 +3,10 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class Reduce {
 
@@ -36,7 +39,11 @@ public class Reduce {
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        List<Integer> resultList = arrayList.stream()
+                .filter(x -> x % 2 == 0)
+                .collect(Collectors.toList());
+        Optional<Integer> firstEven = resultList.stream().findFirst();
+        return firstEven.get();
     }
 
     public int getIndexOfFirstEven() {
