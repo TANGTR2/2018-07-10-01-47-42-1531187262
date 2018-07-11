@@ -3,6 +3,7 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Reduce {
 
@@ -25,7 +26,9 @@ public class Reduce {
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        Double avarage = arrayList.stream()
+                .collect(Collectors.averagingInt(x -> x));
+        return avarage;
     }
 
     public double getOrderedMedian() {
