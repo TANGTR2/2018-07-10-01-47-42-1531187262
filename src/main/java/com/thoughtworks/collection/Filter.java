@@ -33,6 +33,9 @@ public class Filter {
     }
 
     public List<Integer> getDifferentElements() {
-        throw new NotImplementedException();
+        List<Integer> resultList = array.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        return resultList;
     }
 }
