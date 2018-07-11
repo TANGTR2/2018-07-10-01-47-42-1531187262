@@ -5,6 +5,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class MyMap {
 
     List<Integer> array;
@@ -17,7 +19,9 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-        throw new NotImplementedException();
+        List<Integer> tripleList = array.stream()
+                .map(x -> 3*x ).collect(toList());
+        return tripleList;
     }
 
     public List<String> mapLetter() {
