@@ -3,6 +3,7 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -33,7 +34,10 @@ public class MyMap {
     }
 
     public List<Integer> sortFromBig() {
-        throw new NotImplementedException();
+        List<Integer> sortFromBigList = array.stream()
+                .sorted(Comparator.reverseOrder())
+                .map(x -> x).collect(toList());
+        return sortFromBigList;
     }
 
     public List<Integer> sortFromSmall() {
