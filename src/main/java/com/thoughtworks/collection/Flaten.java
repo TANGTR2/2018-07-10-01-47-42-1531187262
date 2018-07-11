@@ -23,6 +23,10 @@ public class Flaten {
     }
 
     public List<Integer> transformToUnrepeatedOneDimesional() {
-        throw new NotImplementedException();
+        List<Integer> resultList = Arrays.stream(array)
+                .flatMap(x -> Arrays.stream(x))
+                .distinct()
+                .collect(Collectors.toList());
+        return resultList;
     }
 }
