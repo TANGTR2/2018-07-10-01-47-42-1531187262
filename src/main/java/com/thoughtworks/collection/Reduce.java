@@ -19,7 +19,9 @@ public class Reduce {
     }
 
     public double getMinimum() {
-        throw new NotImplementedException();
+        int min = arrayList.stream()
+                .min(Integer::compare).get();
+        return min;
     }
 
     public double getAverage() {
