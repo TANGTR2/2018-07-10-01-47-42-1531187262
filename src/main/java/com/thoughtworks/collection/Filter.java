@@ -30,16 +30,10 @@ public class Filter {
     }
 
     public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        List<Integer> listFinal = new ArrayList<>();
-        listFinal.addAll(firstList);
-        listFinal.addAll(secondList);
-        List<Integer> resultList1 = listFinal.stream()
-                .distinct()
+        return firstList.stream()
+                .filter(num -> secondList.stream()
+                        .anyMatch(num::equals))
                 .collect(Collectors.toList());
-        List<Integer> resultList = listFinal.stream()
-                //.filter(resultList1)
-                .collect(Collectors.toList());
-        return resultList;
     }
 
     public List<Integer> getDifferentElements() {
