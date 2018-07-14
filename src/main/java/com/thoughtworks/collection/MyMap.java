@@ -26,24 +26,38 @@ public class MyMap {
     }
 
     public List<String> mapLetter() {
-        throw new NotImplementedException();
+        return array.stream().map(num -> letterList.get(num - 1)).collect(toList());
     }
 
     public List<String> mapLetters() {
-        throw new NotImplementedException();
+        return array.stream().map(num -> {
+            num = num - 1;
+            int letterSize = letterList.size();
+
+            String resultStr;
+            if (num >= letterSize) {
+                int baseLocateNum = num % letterSize;
+                int MultipleLocateNumLocateNum = num / (letterSize) - 1;
+                resultStr = letterList.get(MultipleLocateNumLocateNum) + letterList.get(baseLocateNum);
+            } else {
+                resultStr = letterList.get(num);
+            }
+            return resultStr;
+
+        }).collect(toList());
     }
 
     public List<Integer> sortFromBig() {
         List<Integer> sortFromBigList = array.stream()
                 .sorted(Comparator.reverseOrder())
-                .map(x -> x).collect(toList());
+                .collect(toList());
         return sortFromBigList;
     }
 
     public List<Integer> sortFromSmall() {
         List<Integer> sortFromBigList = array.stream()
                 .sorted()
-                .map(x -> x).collect(toList());
+                .collect(toList());
         return sortFromBigList;
     }
 }
